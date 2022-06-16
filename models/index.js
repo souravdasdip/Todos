@@ -29,3 +29,6 @@ export const quotesSchema = new mongoose.Schema({
     ref: "User",
   },
 });
+
+mongoose.model("User", userSchema);
+mongoose.model("Quotes", quotesSchema);

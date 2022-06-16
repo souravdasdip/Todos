@@ -3,9 +3,7 @@ import { ApolloServer, gql } from "apollo-server";
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 import mongoose from "mongoose";
 import * as mongoServices from "./config/index.js";
-import { resolvers } from "./gqlresolvers/index.js";
 import { typeDefs } from "./gqlschemas/index.js";
-import * as mongoModels from "./models/index.js";
 
 //mongo uri connect
 mongoose.connect(mongoServices.MONGO_URI, {
@@ -23,17 +21,15 @@ mongoose.connection.on("error", () => {
 });
 
 //mongoDB model connection with Schema
-mongoose.model("User", mongoModels.userSchema);
-mongoose.model("Quotes", mongoModels.quotesSchema);
-
-//schema create (greet returns String type)
+import "./models/index.js";
 
 //resolver
+import resolvers from "./gqlresolvers/index.js";
 
 //create Apollo server nstance to listen
 const server = new ApolloServer({
-  typeDefs: typeDefs,
-  resolvers: resolvers,
+  typeDefs,
+  resolvers,
   plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
 });
 

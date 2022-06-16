@@ -7,6 +7,7 @@ export const typeDefs = gql`
     quotes: [Quote]
     iquote(by: ID!): [Quote]
   }
+
   type User {
     _id: ID!
     firstName: String
@@ -15,16 +16,29 @@ export const typeDefs = gql`
     password: String
     quotes: [Quote]
   }
+
   type Quote {
     name: String
     by: ID
   }
+
   type Mutation {
-    signupUserDummy(userNew: UserInput!): User
+    signupUser(userNew: UserInput!): User
+    signinUser(userSignin: UserSignInput!): Token
   }
+
+  type Token {
+    token: String
+  }
+
   input UserInput {
     firstName: String!
     lastName: String!
+    email: String!
+    password: String!
+  }
+
+  input UserSignInput {
     email: String!
     password: String!
   }
