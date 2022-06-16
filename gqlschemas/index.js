@@ -25,6 +25,7 @@ export const typeDefs = gql`
   type Mutation {
     signupUser(userNew: UserInput!): User
     signinUser(userSignin: UserSignInput!): Token
+    createQuote(name: String!): String
   }
 
   type Token {

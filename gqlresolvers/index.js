@@ -5,6 +5,8 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 const User = mongoose.model("User");
+const Quotes = mongoose.model("Quotes");
+
 const resolvers = {
   Query: {
     users: () => users,
@@ -43,6 +45,18 @@ const resolvers = {
       }
       const token = jwt.sign({ userId: user._id }, "jwt_super_secret_key");
       return { token };
+    },
+
+    //create quote =? destructure userID from "context"
+    createQuote: async (_, { name }, { userId }) => {
+      if (!userId) throw new Error("You must be logged in!");
+      const newQoute = new Quotes({
+        name,
+        by: userId,
+      });
+
+      await newQoute.save();
+      return "Quote saved successfully!";
     },
   },
 };
