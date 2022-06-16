@@ -9,10 +9,10 @@ const Quotes = mongoose.model("Quotes");
 
 const resolvers = {
   Query: {
-    users: () => users,
-    user: (_, { _id }) => users.find((user) => user._id == _id),
-    quotes: () => quotes,
-    iquote: (_, { by }) => quotes.filter((quote) => quote.by == by),
+    users: async () => await User.find({}),
+    user: async (_, { _id }) => await User.findOne({ _id }), //users.find((user) => user._id == _id),
+    quotes: async () => await Quotes.find({}),
+    iquote: async (_, { by }) => await Quotes.find({ by }), //quotes.filter((quote) => quote.by == by),
   },
   User: {
     quotes: (ur) => quotes.filter((quote) => quote.by == ur._id),
