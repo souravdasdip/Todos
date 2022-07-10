@@ -11,7 +11,7 @@ const resolvers = {
   Query: {
     users: async () => await User.find({}),
     user: async (_, { _id }) => await User.findOne({ _id }), //users.find((user) => user._id == _id),
-    quotes: async () => await Quotes.find({}),
+    quotes: async () => await Quotes.find({}).populate("by", "_id firstName"), // instead of response with by(_id), response with the _id and firstName of that _id
     iquote: async (_, { by }) => await Quotes.find({ by }), //quotes.filter((quote) => quote.by == by),
   },
   User: {
