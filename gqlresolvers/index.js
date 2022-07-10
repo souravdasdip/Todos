@@ -47,7 +47,7 @@ const resolvers = {
       return { token };
     },
 
-    //create quote =? destructure userID from "context"
+    //create quote =? first param is PARANT, second params is ARGUMENTS, third params is CONTEXT
     createQuote: async (_, { name }, { userId }) => {
       if (!userId) throw new Error("You must be logged in!");
       const newQoute = new Quotes({
