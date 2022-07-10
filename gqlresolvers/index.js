@@ -37,11 +37,11 @@ const resolvers = {
       const user = await User.findOne({ email: userSignin.email });
       console.log(user);
       if (!user) {
-        throw new Error("User dosent exists with that email");
+        throw new Error("User dosen't exists with that email");
       }
       const doMatch = await bcrypt.compare(userSignin.password, user.password);
       if (!doMatch) {
-        throw new Error("email or password in invalid");
+        throw new Error("Email or password is invalid");
       }
       const token = jwt.sign({ userId: user._id }, "jwt_super_secret_key");
       return { token };
