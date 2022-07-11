@@ -22,7 +22,7 @@ function Login() {
       <form onSubmit={handleLogin}>
         <FormInput name="email" placeholder="Enter Email..." />
         <FormInput name="password" placeholder="Enter Password..." />
-        <button>Registration</button>
+        <button>Login</button>
       </form>
     </div>
   );
