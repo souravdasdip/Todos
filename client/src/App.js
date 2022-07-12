@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import "./App.css";
 import CreateQuote from "./screens/CreateQuote";
 import Login from "./screens/Login";
+import MyProfile from "./screens/MyProfile";
 import Registration from "./screens/Registration";
 import { GET_ALL_QUOTES } from "./services/queries";
 
@@ -21,6 +22,7 @@ function App() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
+          flexWrap: "wrap",
         }}
       >
         <h2>Quotes</h2>
@@ -40,6 +42,7 @@ function App() {
 
       <Registration />
       <Login />
+      <MyProfile />
     </div>
   );
 }

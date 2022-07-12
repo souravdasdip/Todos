@@ -11,3 +11,16 @@ export const GET_ALL_QUOTES = gql`
     }
   }
 `;
+
+export const GET_USER_INFO = gql`
+  query getUserInfo {
+    myProfile {
+      firstName
+      lastName
+      email
+      quotes {
+        name
+      }
+    }
+  }
+`;

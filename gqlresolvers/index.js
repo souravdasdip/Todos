@@ -13,9 +13,16 @@ const resolvers = {
     user: async (_, { _id }) => await User.findOne({ _id }), //users.find((user) => user._id == _id),
     quotes: async () => await Quotes.find({}).populate("by", "_id firstName"), // instead of response with by(_id), response with the _id and firstName of that _id
     iquote: async (_, { by }) => await Quotes.find({ by }), //quotes.filter((quote) => quote.by == by),
+
+    myProfile: async (_, args, { userId }) => {
+      console.log({ userId });
+      if (!userId) throw new Error("You must be logged in!");
+
+      return await User.findOne({ _id: userId });
+    },
   },
   User: {
-    quotes: (ur) => quotes.filter((quote) => quote.by == ur._id),
+    quotes: async (user) => await Quotes.find({ by: user._id }), //quotes.filter((quote) => quote.by == ur._id),
   },
   Mutation: {
     //user sign up

@@ -2,9 +2,16 @@ import { useMutation } from "@apollo/client";
 import React from "react";
 import FormInput from "../components/FormInput";
 import { SIGNIN_USER } from "../services/mutation";
+import { GET_USER_INFO } from "../services/queries";
 
 function Login() {
-  const [signInUser, { data, loading, error }] = useMutation(SIGNIN_USER);
+  const [signInUser, { data, loading, error }] = useMutation(SIGNIN_USER, {
+    onCompleted: (data) => {
+      localStorage.setItem("token", data.user.token);
+      console.log("On complete: ", data);
+    },
+    refetchQueries: ["getUserInfo"],
+  });
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -19,9 +26,8 @@ function Login() {
     });
   };
 
-  if (data) {
-    localStorage.setItem("token", data.user.token);
-  }
+  console.log(data?.user?.token);
+
   return (
     <div
       style={{
