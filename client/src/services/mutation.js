@@ -15,3 +15,9 @@ export const SIGNIN_USER = gql`
     }
   }
 `;
+
+export const CREATE_QOUTE = gql`
+  mutation CreateQuote($name: String!) {
+    quote: createQuote(name: $name)
+  }
+`;

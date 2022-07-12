@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { useEffect } from "react";
 import "./App.css";
+import CreateQuote from "./screens/CreateQuote";
 import Login from "./screens/Login";
 import Registration from "./screens/Registration";
 import { GET_ALL_QUOTES } from "./services/queries";
@@ -34,6 +35,9 @@ function App() {
             </>
           ))}
       </div>
+
+      <CreateQuote />
+
       <Registration />
       <Login />
     </div>
